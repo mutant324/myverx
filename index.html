@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myverx — vintage stuff with a story</title>
+    <!-- шрифты: маркер для заголовков, рукописный для подписей, серифный для catalogs: -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <!-- ?v= — версионирование для браузерного кэша: поменял css/js — подними версию -->
+    <link rel="stylesheet" href="/myverx/static/shop/css/style.css?v=8">
+</head>
+<body>
+
+<header class="site-header">
+    <a class="logo" href="/myverx/">myverx</a>
+
+    <nav class="quick-links">
+        <a href="/myverx/#new">new item</a>
+        <a href="/myverx/#styles">styles</a>
+        <a href="/myverx/#about">about us</a>
+        <a href="/myverx/#how-we-works">haw works</a>
+        <a href="/myverx/#contacts">contact</a>
+        <a href="/myverx/catalog/">market</a>
+    </nav>
+
+    <div class="header-right">
+        <!-- поиск: по кнопке открывается, если пусто то по второй закрывается (см. main.js) -->
+        <form class="search-form" id="searchForm" action="/myverx/search/" method="get">
+            <input type="text" name="q" id="searchInput" class="search-input" placeholder="jacket, nike..." autocomplete="off" value="">
+            <button type="submit" class="search-btn" id="searchToggle" aria-label="search">
+                <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>
+            </button>
+        </form>
+
+        <a class="cart-link" href="/myverx/cart/">cart</a>
+
+        <span class="balance" title="profile balance">balance: 0$</span>
+
+        <a class="avatar" href="/myverx/profile/" title="profile">
+            <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="8.2" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1.4-4 4.2-5.6 7.5-5.6s6.1 1.6 7.5 5.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+    </div>
+</header>
+
+<main>
+    
+
+<!-- ===================== hero: два флэтлея встык на всю ширину, текст поверх ===================== -->
+<section class="hero2">
+    <div class="hero-strip">
+        <img src="/myverx/static/shop/img/landing/hero_a.jpg" alt="">
+        <img src="/myverx/static/shop/img/landing/hero_b.jpg" alt="">
+    </div>
+
+    <div class="hero2-inner">
+        <h1 class="serif hero2-title">style for day<br>for yourself</h1>
+        <a class="btn-black" href="#new">Check</a>
+    </div>
+</section>
+
+<!-- ===================== new items: слайдер групп (1 группа = большая карточка + 4 маленькие) ===================== -->
+<!-- товары из общей бд, всегда самые свежие; группы листаются точками и перетаскиванием мышью -->
+<section class="landing-section" id="new">
+    <h2 class="hand sec-hand">New items<br>in the collection</h2>
+
+    <div class="slider" id="newSlider">
+        <div class="slider-track">
+            
+            <div class="slide-group">
+                <a class="big-card" href="/myverx/product/1/">
+                    <img src="/myverx/static/shop/img/products/new1.png" alt="sweater Reebok">
+                    <div class="big-card-info">
+                        <b>sweater Reebok</b>
+                        <p>Reebok International is an American company that manufactures sportswear, footwear, and accessories. Vintage …</p>
+                        <div class="big-card-row">
+                            <span>Price: 100$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="small-cards">
+                    
+                    <a class="small-card" href="/myverx/product/2/">
+                        <img src="/myverx/static/shop/img/products/new2.png" alt="sweater Sincere">
+                        <div class="small-card-info">
+                            <b>sweater Sincere</b>
+                            <span>Price: 56$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/3/">
+                        <img src="/myverx/static/shop/img/products/new3.png" alt="Reebok half-zip sweat">
+                        <div class="small-card-info">
+                            <b>Reebok half-zip sweat</b>
+                            <span>Price: 47$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/4/">
+                        <img src="/myverx/static/shop/img/products/new4.png" alt="Denim jacket racing">
+                        <div class="small-card-info">
+                            <b>Denim jacket racing</b>
+                            <span>Price: 58$</span>
+                            <span>stock: 8/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/5/">
+                        <img src="/myverx/static/shop/img/products/new5.png" alt="Black denim jacket">
+                        <div class="small-card-info">
+                            <b>Black denim jacket</b>
+                            <span>Price: 55$</span>
+                            <span>stock: 8/10</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </div>
+            
+            <div class="slide-group">
+                <a class="big-card" href="/myverx/product/6/">
+                    <img src="/myverx/static/shop/img/products/p01.png" alt="Nike grey panel anorak">
+                    <div class="big-card-info">
+                        <b>Nike grey panel anorak</b>
+                        <p>Grey-paneled Nike anorak with a half-zip. That proper 2000s nylon rustle.</p>
+                        <div class="big-card-row">
+                            <span>Price: 38$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="small-cards">
+                    
+                    <a class="small-card" href="/myverx/product/7/">
+                        <img src="/myverx/static/shop/img/products/p02.png" alt="Adidas two-tone track">
+                        <div class="small-card-info">
+                            <b>Adidas two-tone track</b>
+                            <span>Price: 45$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/8/">
+                        <img src="/myverx/static/shop/img/products/p03.png" alt="Beige utility overshirt">
+                        <div class="small-card-info">
+                            <b>Beige utility overshirt</b>
+                            <span>Price: 34$</span>
+                            <span>stock: 8/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/9/">
+                        <img src="/myverx/static/shop/img/products/p04.png" alt="Umbro chocolate windbreaker">
+                        <div class="small-card-info">
+                            <b>Umbro chocolate windbreaker</b>
+                            <span>Price: 36$</span>
+                            <span>stock: 8/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/10/">
+                        <img src="/myverx/static/shop/img/products/p05.png" alt="Reebok colorblock windbreaker">
+                        <div class="small-card-info">
+                            <b>Reebok colorblock windbreaker</b>
+                            <span>Price: 42$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </div>
+            
+            <div class="slide-group">
+                <a class="big-card" href="/myverx/product/11/">
+                    <img src="/myverx/static/shop/img/products/p06.png" alt="Reebok colorblock v2">
+                    <div class="big-card-info">
+                        <b>Reebok colorblock v2</b>
+                        <p>Same colorblock, different cut. If you know — you know.</p>
+                        <div class="big-card-row">
+                            <span>Price: 40$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="small-cards">
+                    
+                    <a class="small-card" href="/myverx/product/12/">
+                        <img src="/myverx/static/shop/img/products/p07.png" alt="Cherry retro windbreaker">
+                        <div class="small-card-info">
+                            <b>Cherry retro windbreaker</b>
+                            <span>Price: 44$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/13/">
+                        <img src="/myverx/static/shop/img/products/p08.png" alt="Reebok khaki vintage shell">
+                        <div class="small-card-info">
+                            <b>Reebok khaki vintage shell</b>
+                            <span>Price: 39$</span>
+                            <span>stock: 8/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/14/">
+                        <img src="/myverx/static/shop/img/products/p09.png" alt="Adidas black-white half-zip">
+                        <div class="small-card-info">
+                            <b>Adidas black-white half-zip</b>
+                            <span>Price: 37$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/15/">
+                        <img src="/myverx/static/shop/img/products/p10.png" alt="Washed denim trucker">
+                        <div class="small-card-info">
+                            <b>Washed denim trucker</b>
+                            <span>Price: 52$</span>
+                            <span>stock: 8/10</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </div>
+            
+            <div class="slide-group">
+                <a class="big-card" href="/myverx/product/16/">
+                    <img src="/myverx/static/shop/img/products/p11.png" alt="Sport navy-white jacket">
+                    <div class="big-card-info">
+                        <b>Sport navy-white jacket</b>
+                        <p>White summer shell with navy panels. Light enough to crush into a fist.</p>
+                        <div class="big-card-row">
+                            <span>Price: 35$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="small-cards">
+                    
+                    <a class="small-card" href="/myverx/product/17/">
+                        <img src="/myverx/static/shop/img/products/p12.png" alt="Nike black anorak">
+                        <div class="small-card-info">
+                            <b>Nike black anorak</b>
+                            <span>Price: 41$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/18/">
+                        <img src="/myverx/static/shop/img/products/p13.png" alt="Adidas striped half-zip">
+                        <div class="small-card-info">
+                            <b>Adidas striped half-zip</b>
+                            <span>Price: 43$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/19/">
+                        <img src="/myverx/static/shop/img/products/p14.png" alt="Cream satin bomber">
+                        <div class="small-card-info">
+                            <b>Cream satin bomber</b>
+                            <span>Price: 48$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                    <a class="small-card" href="/myverx/product/20/">
+                        <img src="/myverx/static/shop/img/products/p15.png" alt="Navy-white summer shell">
+                        <div class="small-card-info">
+                            <b>Navy-white summer shell</b>
+                            <span>Price: 33$</span>
+                            <span>stock: 9/10</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </div>
+            
+            <div class="slide-group">
+                <a class="big-card" href="/myverx/product/21/">
+                    <img src="/myverx/static/shop/img/products/p16.png" alt="Sage panel half-zip">
+                    <div class="big-card-info">
+                        <b>Sage panel half-zip</b>
+                        <p>Black anorak with a sage chest panel. Rare color — you won&#x27;t find a second one.</p>
+                        <div class="big-card-row">
+                            <span>Price: 36$</span>
+                            <span>stock: 8/10</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="small-cards">
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="dots" id="newDots">
+        
+        <span class="dot active" data-idx="0"></span>
+        
+        <span class="dot" data-idx="1"></span>
+        
+        <span class="dot" data-idx="2"></span>
+        
+        <span class="dot" data-idx="3"></span>
+        
+        <span class="dot" data-idx="4"></span>
+        
+    </div>
+</section>
+
+<!-- ===================== style for u: коллаж выбора (как в макете) ===================== -->
+<section class="landing-section" id="styles">
+    <h2 class="hand sec-hand">style for u</h2>
+    <a href="/myverx/catalog/" title="browse the catalog">
+        <img class="styleforu-img" src="/myverx/static/shop/img/landing/styleforu.jpg" alt="pick your style">
+    </a>
+</section>
+
+<!-- ===================== about as: зеленый блок в цвет шапки, люди вырезаны с черного фона ===================== -->
+<section class="about-as" id="about">
+    <div class="about-inner">
+        <h2 class="hand sec-hand">about as</h2>
+        <div class="about-text hand">
+            <p>We create clothing for those who value freedom of movement, a strong
+               silhouette, and authentic streetwear. No unnecessary details — just
+               precision-cut oversized fits, quality materials, and everyday comfort.</p>
+            <p>Our brand is the foundation of your identity. Your everyday style.
+               Created by you, for yourself.</p>
+        </div>
+        <img class="about-photo" src="/myverx/static/shop/img/landing/about.png?v=4" alt="myverx team">
+    </div>
+</section>
+
+<!-- ===================== haw we works: инфа о доставке поверх картинки ===================== -->
+<section class="landing-section" id="how-we-works">
+    <h2 class="marker sec-title sec-title-center">haw we works</h2>
+
+    <div class="hww-media">
+        <img src="/myverx/static/shop/img/box.svg" alt="myverx package">
+        <div class="hww-overlay mono">
+            <p class="hww-lead">how delivery works</p>
+            <p>Your order is packed the same day: a craft box, a postcard with the
+               story of your item and a bit of vintage dust.</p>
+            <p>Delivery takes 2–5 days across the country.</p>
+            <p>Pay with crypto — BTC, ETH, USDT (TRC-20), TON. Wallet address and
+               the exact amount appear right after checkout.</p>
+        </div>
+    </div>
+
+    <div class="hww-steps">
+        <div class="hww-step">
+            <span class="marker step-num">1</span>
+            <b>we hunt stock</b>
+            <p>european warehouses and second-hands, 90s &amp; 2000s only</p>
+        </div>
+        <div class="hww-step">
+            <span class="marker step-num">2</span>
+            <b>we handpick</b>
+            <p>every piece goes through hands: seams, zippers, lining. stains — no</p>
+        </div>
+        <div class="hww-step">
+            <span class="marker step-num">3</span>
+            <b>wash &amp; measure</b>
+            <p>washed, steamed, honest measurements, photos without retouch</p>
+        </div>
+        <div class="hww-step">
+            <span class="marker step-num">4</span>
+            <b>pack &amp; ship</b>
+            <p>craft box, postcard, nationwide delivery in 2–5 days</p>
+        </div>
+    </div>
+</section>
+
+
+</main>
+
+<footer class="site-footer" id="contacts">
+    <div class="footer-inner">
+        <div class="footer-col">
+            <div class="footer-title">Quick links</div>
+            <a href="/myverx/catalog/">Catalogs</a>
+            <a href="/myverx/#contacts">Contacts</a>
+            <a href="https://t.me/myverx_shop">Comment</a>
+            <a href="/myverx/#how-we-works">Guarantee</a>
+            <a href="mailto:hi@myverxshop@gmail.com">Contact Us</a>
+        </div>
+        <div class="footer-col">
+            <div class="footer-title">contact</div>
+            <a href="https://t.me/myverx_shop">t.me/myverxshop</a>
+            <a href="mailto:hi@myverxshop@gmail.com">hi@myverxshop@gmail.com</a>
+        </div>
+        <div class="footer-img">
+            <img src="/myverx/static/shop/img/landing/footer.jpg" alt="myverx windbreaker">
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 my_verx. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></div>
+</footer>
+
+<script src="/myverx/static/shop/js/main.js?v=6"></script>
+</body>
+</html>

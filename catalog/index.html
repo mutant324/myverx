@@ -1,0 +1,767 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products: all — myverx</title>
+    <!-- шрифты: маркер для заголовков, рукописный для подписей, серифный для catalogs: -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <!-- ?v= — версионирование для браузерного кэша: поменял css/js — подними версию -->
+    <link rel="stylesheet" href="/myverx/static/shop/css/style.css?v=8">
+</head>
+<body>
+
+<header class="site-header">
+    <a class="logo" href="/myverx/">myverx</a>
+
+    <nav class="quick-links">
+        <a href="/myverx/#new">new item</a>
+        <a href="/myverx/#styles">styles</a>
+        <a href="/myverx/#about">about us</a>
+        <a href="/myverx/#how-we-works">haw works</a>
+        <a href="/myverx/#contacts">contact</a>
+        <a href="/myverx/catalog/">market</a>
+    </nav>
+
+    <div class="header-right">
+        <!-- поиск: по кнопке открывается, если пусто то по второй закрывается (см. main.js) -->
+        <form class="search-form" id="searchForm" action="/myverx/search/" method="get">
+            <input type="text" name="q" id="searchInput" class="search-input" placeholder="jacket, nike..." autocomplete="off" value="">
+            <button type="submit" class="search-btn" id="searchToggle" aria-label="search">
+                <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>
+            </button>
+        </form>
+
+        <a class="cart-link" href="/myverx/cart/">cart</a>
+
+        <span class="balance" title="profile balance">balance: 0$</span>
+
+        <a class="avatar" href="/myverx/profile/" title="profile">
+            <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="8.2" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1.4-4 4.2-5.6 7.5-5.6s6.1 1.6 7.5 5.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+    </div>
+</header>
+
+<main>
+    
+<div class="catalog-layout">
+
+    <!-- левый зеленый сайдбар как в макете -->
+    <aside class="cat-sidebar">
+        <div class="serif sidebar-title">catalogs:</div>
+        <nav class="sidebar-nav">
+            <a href="/myverx/catalog/" class="active">all stuff</a>
+            
+            <a href="/myverx/catalog/outerwear/" class="">outerwear</a>
+            
+            <a href="/myverx/catalog/denim/" class="">denim</a>
+            
+            <a href="/myverx/catalog/hoodies/" class="">hoodies</a>
+            
+        </nav>
+    </aside>
+
+    <div class="cat-main">
+        <h1 class="marker cat-title">Products: <span>all stuff</span></h1>
+
+        <!-- кнопка фильтров: панель выезжает по клику (main.js) -->
+        <button type="button" class="filters-btn" id="filtersToggle">
+            filters <span class="arr" id="filtersArr">▼</span>
+            
+        </button>
+
+        <form class="filters-panel " id="filtersPanel" method="get">
+            <div class="filters-grid">
+                <label>color
+                    <select name="color">
+                        <option value="">any</option>
+                        <option value="beige" >beige</option><option value="black" >black</option><option value="blue" >blue</option><option value="brown" >brown</option><option value="burgundy" >burgundy</option><option value="green" >green</option><option value="grey" >grey</option><option value="white" >white</option>
+                    </select>
+                </label>
+                <label>brand
+                    <select name="brand">
+                        <option value="">any</option>
+                        <option value="Adidas" >Adidas</option><option value="Lee" >Lee</option><option value="Nike" >Nike</option><option value="Reebok" >Reebok</option><option value="Sincere" >Sincere</option><option value="Umbro" >Umbro</option><option value="Vintage" >Vintage</option>
+                    </select>
+                </label>
+                <label>material
+                    <select name="material">
+                        <option value="">any</option>
+                        <option value="cotton" >cotton</option><option value="denim" >denim</option><option value="nylon" >nylon</option><option value="polyester" >polyester</option>
+                    </select>
+                </label>
+                <label>gender
+                    <select name="gender">
+                        <option value="">any</option>
+                        <option value="unisex" >unisex</option><option value="male" >male</option><option value="female" >female</option>
+                    </select>
+                </label>
+                <label>size
+                    <select name="size">
+                        <option value="">any</option>
+                        <option value="S" >S</option><option value="M" >M</option><option value="L" >L</option><option value="XL" >XL</option>
+                    </select>
+                </label>
+                <label>condition
+                    <select name="condition">
+                        <option value="">any</option>
+                        <option value="8/10" >8/10</option><option value="9/10" >9/10</option>
+                    </select>
+                </label>
+                <label>season
+                    <select name="season">
+                        <option value="">any</option>
+                        <option value="mid-season" >mid-season</option><option value="summer" >summer</option>
+                    </select>
+                </label>
+                <label>price, $
+                    <span class="price-pair">
+                        <input type="number" name="price_min" placeholder="from" min="0" value="">
+                        <input type="number" name="price_max" placeholder="to" min="0" value="">
+                    </span>
+                </label>
+                <label>sort
+                    <select name="sort">
+                        <option value="">newest first</option>
+                        <option value="price_asc" >cheapest first</option>
+                        <option value="price_desc" >priciest first</option>
+                        <option value="name" >by name</option>
+                    </select>
+                </label>
+                <label class="sale-check">
+                    <input type="checkbox" name="only_sale" > on sale only
+                </label>
+            </div>
+            <div class="filters-actions">
+                <button type="submit" class="btn-black">confirm</button>
+                <a class="filters-reset" href="/myverx/catalog/">reset</a>
+            </div>
+        </form>
+
+        
+        <div class="product-grid">
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/1/">
+        <img src="/myverx/static/shop/img/products/new1.png" alt="sweater Reebok" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Reebok</b>
+            <span>size: L</span>
+            <span>cotton</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1001</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/1/">sweater Reebok</a>
+            <span class="p-meta">L · grey</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">100$</span>
+            <a class="btn-add" href="/myverx/cart/add/1/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/2/">
+        <img src="/myverx/static/shop/img/products/new2.png" alt="sweater Sincere" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Sincere</b>
+            <span>size: L</span>
+            <span>cotton</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1002</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/2/">sweater Sincere</a>
+            <span class="p-meta">L · grey</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">56$</span>
+            <a class="btn-add" href="/myverx/cart/add/2/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/3/">
+        <img src="/myverx/static/shop/img/products/new3.png" alt="Reebok half-zip sweat" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Reebok</b>
+            <span>size: M</span>
+            <span>cotton</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1003</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/3/">Reebok half-zip sweat</a>
+            <span class="p-meta">M · green</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">47$</span>
+            <a class="btn-add" href="/myverx/cart/add/3/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/4/">
+        <img src="/myverx/static/shop/img/products/new4.png" alt="Denim jacket racing" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: L</span>
+            <span>denim</span>
+            <span>condition: 8/10</span>
+            <span>art. MV-1004</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/4/">Denim jacket racing</a>
+            <span class="p-meta">L · blue</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">58$</span>
+            <a class="btn-add" href="/myverx/cart/add/4/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/5/">
+        <img src="/myverx/static/shop/img/products/new5.png" alt="Black denim jacket" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: L</span>
+            <span>denim</span>
+            <span>condition: 8/10</span>
+            <span>art. MV-1005</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/5/">Black denim jacket</a>
+            <span class="p-meta">L · black</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">55$</span>
+            <a class="btn-add" href="/myverx/cart/add/5/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/6/">
+        <img src="/myverx/static/shop/img/products/p01.png" alt="Nike grey panel anorak" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Nike</b>
+            <span>size: M</span>
+            <span>nylon</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1006</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/6/">Nike grey panel anorak</a>
+            <span class="p-meta">M · black</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">38$</span>
+            <a class="btn-add" href="/myverx/cart/add/6/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/7/">
+        <img src="/myverx/static/shop/img/products/p02.png" alt="Adidas two-tone track" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Adidas</b>
+            <span>size: M</span>
+            <span>polyester</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1007</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/7/">Adidas two-tone track</a>
+            <span class="p-meta">M · black</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">45$</span>
+            <a class="btn-add" href="/myverx/cart/add/7/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/8/">
+        <img src="/myverx/static/shop/img/products/p03.png" alt="Beige utility overshirt" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: XL</span>
+            <span>cotton</span>
+            <span>condition: 8/10</span>
+            <span>art. MV-1008</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/8/">Beige utility overshirt</a>
+            <span class="p-meta">XL · beige</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">34$</span>
+            <a class="btn-add" href="/myverx/cart/add/8/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/9/">
+        <img src="/myverx/static/shop/img/products/p04.png" alt="Umbro chocolate windbreaker" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Umbro</b>
+            <span>size: L</span>
+            <span>polyester</span>
+            <span>condition: 8/10</span>
+            <span>art. MV-1009</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/9/">Umbro chocolate windbreaker</a>
+            <span class="p-meta">L · brown</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">36$</span>
+            <a class="btn-add" href="/myverx/cart/add/9/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/10/">
+        <img src="/myverx/static/shop/img/products/p05.png" alt="Reebok colorblock windbreaker" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Reebok</b>
+            <span>size: L</span>
+            <span>polyester</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1010</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/10/">Reebok colorblock windbreaker</a>
+            <span class="p-meta">L · grey</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">42$</span>
+            <a class="btn-add" href="/myverx/cart/add/10/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/11/">
+        <img src="/myverx/static/shop/img/products/p06.png" alt="Reebok colorblock v2" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Reebok</b>
+            <span>size: M</span>
+            <span>polyester</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1011</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/11/">Reebok colorblock v2</a>
+            <span class="p-meta">M · grey</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">40$</span>
+            <a class="btn-add" href="/myverx/cart/add/11/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/12/">
+        <img src="/myverx/static/shop/img/products/p07.png" alt="Cherry retro windbreaker" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: M</span>
+            <span>nylon</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1012</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/12/">Cherry retro windbreaker</a>
+            <span class="p-meta">M · burgundy</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">44$</span>
+            <a class="btn-add" href="/myverx/cart/add/12/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/13/">
+        <img src="/myverx/static/shop/img/products/p08.png" alt="Reebok khaki vintage shell" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Reebok</b>
+            <span>size: L</span>
+            <span>polyester</span>
+            <span>condition: 8/10</span>
+            <span>art. MV-1013</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/13/">Reebok khaki vintage shell</a>
+            <span class="p-meta">L · green</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">39$</span>
+            <a class="btn-add" href="/myverx/cart/add/13/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/14/">
+        <img src="/myverx/static/shop/img/products/p09.png" alt="Adidas black-white half-zip" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Adidas</b>
+            <span>size: M</span>
+            <span>polyester</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1014</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/14/">Adidas black-white half-zip</a>
+            <span class="p-meta">M · black</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">37$</span>
+            <a class="btn-add" href="/myverx/cart/add/14/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/15/">
+        <img src="/myverx/static/shop/img/products/p10.png" alt="Washed denim trucker" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Lee</b>
+            <span>size: M</span>
+            <span>denim</span>
+            <span>condition: 8/10</span>
+            <span>art. MV-1015</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/15/">Washed denim trucker</a>
+            <span class="p-meta">M · blue</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">52$</span>
+            <a class="btn-add" href="/myverx/cart/add/15/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/16/">
+        <img src="/myverx/static/shop/img/products/p11.png" alt="Sport navy-white jacket" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: L</span>
+            <span>polyester</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1016</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/16/">Sport navy-white jacket</a>
+            <span class="p-meta">L · white</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">35$</span>
+            <a class="btn-add" href="/myverx/cart/add/16/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/17/">
+        <img src="/myverx/static/shop/img/products/p12.png" alt="Nike black anorak" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Nike</b>
+            <span>size: M</span>
+            <span>nylon</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1017</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/17/">Nike black anorak</a>
+            <span class="p-meta">M · black</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">41$</span>
+            <a class="btn-add" href="/myverx/cart/add/17/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/18/">
+        <img src="/myverx/static/shop/img/products/p13.png" alt="Adidas striped half-zip" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Adidas</b>
+            <span>size: M</span>
+            <span>cotton</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1018</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/18/">Adidas striped half-zip</a>
+            <span class="p-meta">M · black</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">43$</span>
+            <a class="btn-add" href="/myverx/cart/add/18/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/19/">
+        <img src="/myverx/static/shop/img/products/p14.png" alt="Cream satin bomber" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: S</span>
+            <span>nylon</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1019</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/19/">Cream satin bomber</a>
+            <span class="p-meta">S · beige</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">48$</span>
+            <a class="btn-add" href="/myverx/cart/add/19/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/20/">
+        <img src="/myverx/static/shop/img/products/p15.png" alt="Navy-white summer shell" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: M</span>
+            <span>nylon</span>
+            <span>condition: 9/10</span>
+            <span>art. MV-1020</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/20/">Navy-white summer shell</a>
+            <span class="p-meta">M · white</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">33$</span>
+            <a class="btn-add" href="/myverx/cart/add/20/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/21/">
+        <img src="/myverx/static/shop/img/products/p16.png" alt="Sage panel half-zip" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: L</span>
+            <span>polyester</span>
+            <span>condition: 8/10</span>
+            <span>art. MV-1021</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/21/">Sage panel half-zip</a>
+            <span class="p-meta">L · green</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">36$</span>
+            <a class="btn-add" href="/myverx/cart/add/21/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+        </div>
+        <p class="hand-sub found-line">found: 21 items</p>
+        
+    </div>
+</div>
+
+</main>
+
+<footer class="site-footer" id="contacts">
+    <div class="footer-inner">
+        <div class="footer-col">
+            <div class="footer-title">Quick links</div>
+            <a href="/myverx/catalog/">Catalogs</a>
+            <a href="/myverx/#contacts">Contacts</a>
+            <a href="https://t.me/myverx_shop">Comment</a>
+            <a href="/myverx/#how-we-works">Guarantee</a>
+            <a href="mailto:hi@myverxshop@gmail.com">Contact Us</a>
+        </div>
+        <div class="footer-col">
+            <div class="footer-title">contact</div>
+            <a href="https://t.me/myverx_shop">t.me/myverxshop</a>
+            <a href="mailto:hi@myverxshop@gmail.com">hi@myverxshop@gmail.com</a>
+        </div>
+        <div class="footer-img">
+            <img src="/myverx/static/shop/img/landing/footer.jpg" alt="myverx windbreaker">
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 my_verx. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></div>
+</footer>
+
+<script src="/myverx/static/shop/js/main.js?v=6"></script>
+</body>
+</html>

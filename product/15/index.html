@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Washed denim trucker — myverx</title>
+    <!-- шрифты: маркер для заголовков, рукописный для подписей, серифный для catalogs: -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <!-- ?v= — версионирование для браузерного кэша: поменял css/js — подними версию -->
+    <link rel="stylesheet" href="/myverx/static/shop/css/style.css?v=8">
+</head>
+<body>
+
+<header class="site-header">
+    <a class="logo" href="/myverx/">myverx</a>
+
+    <nav class="quick-links">
+        <a href="/myverx/#new">new item</a>
+        <a href="/myverx/#styles">styles</a>
+        <a href="/myverx/#about">about us</a>
+        <a href="/myverx/#how-we-works">haw works</a>
+        <a href="/myverx/#contacts">contact</a>
+        <a href="/myverx/catalog/">market</a>
+    </nav>
+
+    <div class="header-right">
+        <!-- поиск: по кнопке открывается, если пусто то по второй закрывается (см. main.js) -->
+        <form class="search-form" id="searchForm" action="/myverx/search/" method="get">
+            <input type="text" name="q" id="searchInput" class="search-input" placeholder="jacket, nike..." autocomplete="off" value="">
+            <button type="submit" class="search-btn" id="searchToggle" aria-label="search">
+                <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>
+            </button>
+        </form>
+
+        <a class="cart-link" href="/myverx/cart/">cart</a>
+
+        <span class="balance" title="profile balance">balance: 0$</span>
+
+        <a class="avatar" href="/myverx/profile/" title="profile">
+            <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="8.2" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1.4-4 4.2-5.6 7.5-5.6s6.1 1.6 7.5 5.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+    </div>
+</header>
+
+<main>
+    
+<div class="catalog-layout">
+
+    <!-- зеленый сайдбар как в макете item -->
+    <aside class="cat-sidebar">
+        <div class="serif sidebar-title">catalogs:</div>
+        <nav class="sidebar-nav">
+            <a href="/myverx/catalog/">all stuff</a>
+            
+            <a href="/myverx/catalog/outerwear/" class="">outerwear</a>
+            
+            <a href="/myverx/catalog/denim/" class="active">denim</a>
+            
+            <a href="/myverx/catalog/hoodies/" class="">hoodies</a>
+            
+        </nav>
+    </aside>
+
+    <div class="item-main">
+        <h1 class="marker item-title">Washed denim trucker</h1>
+
+        <div class="item-layout">
+            <a class="item-photo" href="/myverx/catalog/denim/">
+                <img src="/myverx/static/shop/img/products/p10.png" alt="Washed denim trucker">
+            </a>
+
+            <div class="item-buy mono">
+                <p class="item-price">price:&nbsp; 52 $</p>
+                <p>Quantity:</p>
+                <div class="qty-step">
+                    <button type="button" id="qtyMinus">−</button>
+                    <span id="qtyVal">1</span>
+                    <button type="button" id="qtyPlus">+</button>
+                </div>
+                <p class="item-stock">In stock: at the warehouse</p>
+                <div class="item-btns">
+                    <a class="btn-green" id="buyNow"
+                       href="/myverx/cart/add/15/?qty=1&next=checkout">buy in 1 click</a>
+                    <a class="btn-grey" id="addToCart"
+                       href="/myverx/cart/add/15/?qty=1">add to cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- табы как в макете -->
+        <div class="item-tabs">
+            <button class="tab active" data-tab="descr">Description</button>
+            <button class="tab" data-tab="specs">Specifications</button>
+            <button class="tab" data-tab="delivery">Delivery and Payment</button>
+        </div>
+
+        <div class="tab-pane mono active" id="tab-descr">
+            <p>Article: MV-1015</p>
+            <p>Lee trucker jacket in a heavy wash. Faded buttons, workwear fit, city attitude.</p>
+        </div>
+        <div class="tab-pane mono" id="tab-specs" hidden>
+            <p>Size: M</p>
+            <p>Color: blue</p>
+            <p>Material: denim</p>
+            <p>Gender: male</p>
+            <p>Condition: 8/10</p>
+            <p>Season: mid-season</p>
+        </div>
+        <div class="tab-pane mono" id="tab-delivery" hidden>
+            <p>Delivery takes 2–5 days nationwide, orders ship the same day.</p>
+            <p>Pay with crypto: BTC, ETH, USDT (TRC-20), TON.</p>
+            <p>The wallet address and the exact amount appear right after checkout.</p>
+        </div>
+
+        
+        <h2 class="marker item-else">else</h2>
+        <div class="product-grid product-grid-4">
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/4/">
+        <img src="/myverx/static/shop/img/products/new4.png" alt="Denim jacket racing" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: L</span>
+            <span>denim</span>
+            <span>condition: 8/10</span>
+            <span>art. MV-1004</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/4/">Denim jacket racing</a>
+            <span class="p-meta">L · blue</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">58$</span>
+            <a class="btn-add" href="/myverx/cart/add/4/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+                
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/myverx/product/5/">
+        <img src="/myverx/static/shop/img/products/new5.png" alt="Black denim jacket" loading="lazy">
+        
+        <div class="ph-info">
+            <b>Vintage</b>
+            <span>size: L</span>
+            <span>denim</span>
+            <span>condition: 8/10</span>
+            <span>art. MV-1005</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/myverx/product/5/">Black denim jacket</a>
+            <span class="p-meta">L · black</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">55$</span>
+            <a class="btn-add" href="/myverx/cart/add/5/">+ to cart</a>
+        </div>
+    </div>
+</div>
+
+            
+        </div>
+        
+    </div>
+</div>
+
+</main>
+
+<footer class="site-footer" id="contacts">
+    <div class="footer-inner">
+        <div class="footer-col">
+            <div class="footer-title">Quick links</div>
+            <a href="/myverx/catalog/">Catalogs</a>
+            <a href="/myverx/#contacts">Contacts</a>
+            <a href="https://t.me/myverx_shop">Comment</a>
+            <a href="/myverx/#how-we-works">Guarantee</a>
+            <a href="mailto:hi@myverxshop@gmail.com">Contact Us</a>
+        </div>
+        <div class="footer-col">
+            <div class="footer-title">contact</div>
+            <a href="https://t.me/myverx_shop">t.me/myverxshop</a>
+            <a href="mailto:hi@myverxshop@gmail.com">hi@myverxshop@gmail.com</a>
+        </div>
+        <div class="footer-img">
+            <img src="/myverx/static/shop/img/landing/footer.jpg" alt="myverx windbreaker">
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 my_verx. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></div>
+</footer>
+
+<script src="/myverx/static/shop/js/main.js?v=6"></script>
+</body>
+</html>

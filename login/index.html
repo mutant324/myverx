@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login — myverx</title>
+    <!-- шрифты: маркер для заголовков, рукописный для подписей, серифный для catalogs: -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <!-- ?v= — версионирование для браузерного кэша: поменял css/js — подними версию -->
+    <link rel="stylesheet" href="/myverx/static/shop/css/style.css?v=8">
+</head>
+<body>
+
+<header class="site-header">
+    <a class="logo" href="/myverx/">myverx</a>
+
+    <nav class="quick-links">
+        <a href="/myverx/#new">new item</a>
+        <a href="/myverx/#styles">styles</a>
+        <a href="/myverx/#about">about us</a>
+        <a href="/myverx/#how-we-works">haw works</a>
+        <a href="/myverx/#contacts">contact</a>
+        <a href="/myverx/catalog/">market</a>
+    </nav>
+
+    <div class="header-right">
+        <!-- поиск: по кнопке открывается, если пусто то по второй закрывается (см. main.js) -->
+        <form class="search-form" id="searchForm" action="/myverx/search/" method="get">
+            <input type="text" name="q" id="searchInput" class="search-input" placeholder="jacket, nike..." autocomplete="off" value="">
+            <button type="submit" class="search-btn" id="searchToggle" aria-label="search">
+                <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>
+            </button>
+        </form>
+
+        <a class="cart-link" href="/myverx/cart/">cart</a>
+
+        <span class="balance" title="profile balance">balance: 0$</span>
+
+        <a class="avatar" href="/myverx/profile/" title="profile">
+            <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="8.2" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1.4-4 4.2-5.6 7.5-5.6s6.1 1.6 7.5 5.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+    </div>
+</header>
+
+<main>
+    
+<div class="auth-wrap">
+    <div class="auth-card">
+        <h1 class="marker">login</h1>
+        <p class="hand-sub">log in with your username and password</p>
+
+        
+
+        <form method="post">
+            <input type="hidden" name="csrfmiddlewaretoken" value="cHgzSBxaaB7WDBuOCUOeuwTLfG3oQ3BoI2KvkiLBxfEWBtthoQCszddnM6b85Ipu">
+            <label><span>username <i class="req">*</i></span>
+                <input type="text" name="username" required value="" placeholder="vintage_lover">
+            </label>
+            <label><span>password <i class="req">*</i></span>
+                <input type="password" name="password" required>
+            </label>
+            <button type="submit" class="btn-black btn-big">log in</button>
+        </form>
+
+        <p class="auth-alt">no account? <a href="/myverx/register/">registration</a> · <a href="/myverx/">back to home</a></p>
+    </div>
+</div>
+
+</main>
+
+<footer class="site-footer" id="contacts">
+    <div class="footer-inner">
+        <div class="footer-col">
+            <div class="footer-title">Quick links</div>
+            <a href="/myverx/catalog/">Catalogs</a>
+            <a href="/myverx/#contacts">Contacts</a>
+            <a href="https://t.me/myverx_shop">Comment</a>
+            <a href="/myverx/#how-we-works">Guarantee</a>
+            <a href="mailto:hi@myverxshop@gmail.com">Contact Us</a>
+        </div>
+        <div class="footer-col">
+            <div class="footer-title">contact</div>
+            <a href="https://t.me/myverx_shop">t.me/myverxshop</a>
+            <a href="mailto:hi@myverxshop@gmail.com">hi@myverxshop@gmail.com</a>
+        </div>
+        <div class="footer-img">
+            <img src="/myverx/static/shop/img/landing/footer.jpg" alt="myverx windbreaker">
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 my_verx. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></div>
+</footer>
+
+<script src="/myverx/static/shop/js/main.js?v=6"></script>
+</body>
+</html>
