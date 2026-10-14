@@ -1,0 +1,26 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}search{% if q %}: {{ q }}{% endif %} — myverx{% endblock %}
+
+{% block content %}
+<div class="landing-section">
+    <h1 class="marker sec-title">search{% if q %}: «{{ q }}»{% endif %}</h1>
+
+    {% if not q %}
+        <p class="hand-sub">type something in the search up in the header, like «jacket» or «nike»</p>
+    {% elif products %}
+        <p class="hand-sub">found: {{ products|length }} items</p>
+        <div class="product-grid">
+            {% for p in products %}
+                {% include 'shop/partial_product_card.html' %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p class="marker">nothing for «{{ q }}» :(</p>
+            <p>try another query or browse <a href="/catalog/">the whole catalog</a></p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

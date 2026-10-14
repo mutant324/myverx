@@ -1,0 +1,50 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}registration — myverx{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+    <div class="auth-card">
+        <h1 class="marker">registration</h1>
+        <p class="hand-sub">a real account — your guest cart moves into it automatically</p>
+
+        {% if errors %}
+        <div class="auth-errors">
+            {% for e in errors %}<p>✕ {{ e }}</p>{% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <label><span>username <i class="req">*</i></span>
+                <input type="text" name="username" required minlength="3" value="{{ data.username }}" placeholder="vintage_lover">
+            </label>
+            <label><span>email <i class="req">*</i></span>
+                <input type="email" name="email" required value="{{ data.email }}" placeholder="you@mail.ru">
+            </label>
+            <div class="auth-row">
+                <label><span>first name</span>
+                    <input type="text" name="first_name" value="{{ data.first_name }}" placeholder="Ivan">
+                </label>
+                <label><span>last name</span>
+                    <input type="text" name="last_name" value="{{ data.last_name }}" placeholder="Petrov">
+                </label>
+            </div>
+            <label><span>birth date <i class="req">*</i></span>
+                <input type="date" name="birth_date" required value="{{ data.birth_date }}">
+            </label>
+            <div class="auth-row">
+                <label><span>password <i class="req">*</i></span>
+                    <input type="password" name="password" required minlength="6" placeholder="min. 6 characters">
+                </label>
+                <label><span>repeat <i class="req">*</i></span>
+                    <input type="password" name="password2" required>
+                </label>
+            </div>
+            <button type="submit" class="btn-black btn-big">create account</button>
+        </form>
+
+        <p class="auth-alt">already have an account? <a href="/login/">log in</a> · <a href="/">back to home</a></p>
+    </div>
+</div>
+{% endblock %}

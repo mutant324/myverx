@@ -1,0 +1,51 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}checkout — myverx{% endblock %}
+
+{% block content %}
+<div class="landing-section">
+    <h1 class="marker sec-title">checkout</h1>
+
+    <div class="checkout-layout">
+        <div class="checkout-summary">
+            <h3 class="hand-sub">your order:</h3>
+            {% for row in rows %}
+            <div class="co-row">
+                <span>{{ row.prod.name }} × {{ row.item.quantity }}</span>
+                <b>{{ row.sum }}$</b>
+            </div>
+            {% endfor %}
+            <div class="co-row co-total">
+                <span>total</span>
+                <b class="marker">{{ total }}$</b>
+            </div>
+        </div>
+
+        <form class="checkout-form" method="post">
+            {% csrf_token %}
+            <h3 class="hand-sub">pay with crypto:</h3>
+            <p class="co-note">Pick a coin — after checkout we'll show you the wallet
+                address and the exact amount. ⚠️ demo mode: no real transfers happen,
+                nothing is charged.</p>
+
+            <label class="co-label">telegram for contact
+                <input type="text" name="telegram" placeholder="@nick (optional)">
+            </label>
+
+            <div class="co-currencies">
+                {% for v in variants %}
+                <label class="co-cur">
+                    <input type="radio" name="currency" value="{{ v.currency }}" {% if forloop.first %}checked{% endif %}>
+                    <span class="co-cur-name marker">{{ v.currency }}</span>
+                    <span class="co-cur-amount">≈ {{ v.amount }} {{ v.currency }}</span>
+                </label>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn-black btn-big">create order &amp; get the address</button>
+            <a class="filters-reset" href="/cart/">← back to cart</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

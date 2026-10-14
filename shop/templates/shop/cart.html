@@ -1,0 +1,44 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}cart — myverx{% endblock %}
+
+{% block content %}
+<div class="landing-section">
+    <h1 class="marker sec-title">cart</h1>
+
+    {% if rows %}
+    <div class="cart-list">
+        {% for row in rows %}
+        <div class="cart-row">
+            <a class="cart-thumb" href="/product/{{ row.prod.id }}/">
+                <img src="{% static row.prod.image %}" alt="{{ row.prod.name }}">
+            </a>
+            <div class="cart-names">
+                <a class="p-name" href="/product/{{ row.prod.id }}/">{{ row.prod.name }}</a>
+                <span class="p-meta">{{ row.prod.brand }} · {{ row.prod.size }} · {{ row.prod.color }}</span>
+            </div>
+            <div class="cart-qty">
+                <a href="/cart/qty/{{ row.item.id }}/?d=-1" class="qty-btn">−</a>
+                <span>{{ row.item.quantity }}</span>
+                <a href="/cart/qty/{{ row.item.id }}/?d=1" class="qty-btn">+</a>
+            </div>
+            <div class="cart-sum marker">{{ row.sum }}$</div>
+            <a class="cart-del" href="/cart/remove/{{ row.item.id }}/" title="remove">✕</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="cart-total">
+        <span class="hand-sub">items: {{ rows|length }}</span>
+        <div class="cart-total-sum marker">total: {{ total }}$</div>
+        <a class="btn-black" href="/checkout/">checkout &amp; pay with crypto →</a>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p class="marker">your cart is empty</p>
+        <p>easy to fix — <a href="/catalog/">we've got plenty of windbreakers here</a></p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

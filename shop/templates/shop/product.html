@@ -1,0 +1,81 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}{{ p.name }} — myverx{% endblock %}
+
+{% block content %}
+<div class="catalog-layout">
+
+    <!-- зеленый сайдбар как в макете item -->
+    <aside class="cat-sidebar">
+        <div class="serif sidebar-title">catalogs:</div>
+        <nav class="sidebar-nav">
+            <a href="/catalog/">all stuff</a>
+            {% for c in categories %}
+            <a href="/catalog/{{ c.slug }}/" class="{% if p.category.id == c.id %}active{% endif %}">{{ c.name }}</a>
+            {% endfor %}
+        </nav>
+    </aside>
+
+    <div class="item-main">
+        <h1 class="marker item-title">{{ p.name }}</h1>
+
+        <div class="item-layout">
+            <a class="item-photo" href="/catalog/{{ p.category.slug }}/">
+                <img src="{% static p.image %}" alt="{{ p.name }}">
+            </a>
+
+            <div class="item-buy mono">
+                <p class="item-price">price:&nbsp; {{ p.price }} $</p>
+                <p>Quantity:</p>
+                <div class="qty-step">
+                    <button type="button" id="qtyMinus">−</button>
+                    <span id="qtyVal">1</span>
+                    <button type="button" id="qtyPlus">+</button>
+                </div>
+                <p class="item-stock">In stock: at the warehouse</p>
+                <div class="item-btns">
+                    <a class="btn-green" id="buyNow"
+                       href="/cart/add/{{ p.id }}/?qty=1&next=checkout">buy in 1 click</a>
+                    <a class="btn-grey" id="addToCart"
+                       href="/cart/add/{{ p.id }}/?qty=1">add to cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- табы как в макете -->
+        <div class="item-tabs">
+            <button class="tab active" data-tab="descr">Description</button>
+            <button class="tab" data-tab="specs">Specifications</button>
+            <button class="tab" data-tab="delivery">Delivery and Payment</button>
+        </div>
+
+        <div class="tab-pane mono active" id="tab-descr">
+            <p>Article: {{ p.article }}</p>
+            <p>{{ p.description }}</p>
+        </div>
+        <div class="tab-pane mono" id="tab-specs" hidden>
+            <p>Size: {{ p.size }}</p>
+            <p>Color: {{ p.color }}</p>
+            <p>Material: {{ p.material }}</p>
+            <p>Gender: {{ p.gender }}</p>
+            <p>Condition: {{ p.condition }}</p>
+            <p>Season: {{ p.season }}</p>
+        </div>
+        <div class="tab-pane mono" id="tab-delivery" hidden>
+            <p>Delivery takes 2–5 days nationwide, orders ship the same day.</p>
+            <p>Pay with crypto: BTC, ETH, USDT (TRC-20), TON.</p>
+            <p>The wallet address and the exact amount appear right after checkout.</p>
+        </div>
+
+        {% if similar %}
+        <h2 class="marker item-else">else</h2>
+        <div class="product-grid product-grid-4">
+            {% for p in similar %}
+                {% include 'shop/partial_product_card.html' %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

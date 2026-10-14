@@ -1,0 +1,26 @@
+{% load static %}
+<!-- карточка товара, юзается в лендинге, каталоге и поиске.
+     при наведении на фото выезжает серая плашка с инфой (это по макету) -->
+<div class="product-card">
+    <a class="ph-wrap" href="/product/{{ p.id }}/">
+        <img src="{% static p.image %}" alt="{{ p.name }}" loading="lazy">
+        {% if p.old_price %}<span class="sale-badge">−{{ p.discount_percent }}%</span>{% endif %}
+        <div class="ph-info">
+            <b>{{ p.brand }}</b>
+            <span>size: {{ p.size }}</span>
+            <span>{{ p.material }}</span>
+            <span>condition: {{ p.condition }}</span>
+            <span>art. {{ p.article }}</span>
+        </div>
+    </a>
+    <div class="card-row">
+        <div class="card-names">
+            <a class="p-name" href="/product/{{ p.id }}/">{{ p.name }}</a>
+            <span class="p-meta">{{ p.size }} · {{ p.color }}</span>
+        </div>
+        <div class="card-buy">
+            <span class="p-price">{{ p.price }}${% if p.old_price %} <s>{{ p.old_price }}$</s>{% endif %}</span>
+            <a class="btn-add" href="/cart/add/{{ p.id }}/">+ to cart</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}login — myverx{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+    <div class="auth-card">
+        <h1 class="marker">login</h1>
+        <p class="hand-sub">log in with your username and password</p>
+
+        {% if error %}
+        <div class="auth-errors"><p>✕ {{ error }}</p></div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <label><span>username <i class="req">*</i></span>
+                <input type="text" name="username" required value="{{ username }}" placeholder="vintage_lover">
+            </label>
+            <label><span>password <i class="req">*</i></span>
+                <input type="password" name="password" required>
+            </label>
+            <button type="submit" class="btn-black btn-big">log in</button>
+        </form>
+
+        <p class="auth-alt">no account? <a href="/register/">registration</a> · <a href="/">back to home</a></p>
+    </div>
+</div>
+{% endblock %}

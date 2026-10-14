@@ -1,0 +1,125 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ===================== hero: два флэтлея встык на всю ширину, текст поверх ===================== -->
+<section class="hero2">
+    <div class="hero-strip">
+        <img src="{% static 'shop/img/landing/hero_a.jpg' %}" alt="">
+        <img src="{% static 'shop/img/landing/hero_b.jpg' %}" alt="">
+    </div>
+
+    <div class="hero2-inner">
+        <h1 class="serif hero2-title">style for day<br>for yourself</h1>
+        <a class="btn-black" href="#new">Check</a>
+    </div>
+</section>
+
+<!-- ===================== new items: слайдер групп (1 группа = большая карточка + 4 маленькие) ===================== -->
+<!-- товары из общей бд, всегда самые свежие; группы листаются точками и перетаскиванием мышью -->
+<section class="landing-section" id="new">
+    <h2 class="hand sec-hand">New items<br>in the collection</h2>
+
+    <div class="slider" id="newSlider">
+        <div class="slider-track">
+            {% for g in product_groups %}
+            <div class="slide-group">
+                <a class="big-card" href="/product/{{ g.0.id }}/">
+                    <img src="{% static g.0.image %}" alt="{{ g.0.name }}">
+                    <div class="big-card-info">
+                        <b>{{ g.0.name }}</b>
+                        <p>{{ g.0.description|truncatechars:110 }}</p>
+                        <div class="big-card-row">
+                            <span>Price: {{ g.0.price }}$</span>
+                            <span>stock: {{ g.0.condition }}</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="small-cards">
+                    {% for p in g|slice:'1:' %}
+                    <a class="small-card" href="/product/{{ p.id }}/">
+                        <img src="{% static p.image %}" alt="{{ p.name }}">
+                        <div class="small-card-info">
+                            <b>{{ p.name }}</b>
+                            <span>Price: {{ p.price }}$</span>
+                            <span>stock: {{ p.condition }}</span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="dots" id="newDots">
+        {% for g in product_groups %}
+        <span class="dot{% if forloop.first %} active{% endif %}" data-idx="{{ forloop.counter0 }}"></span>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ===================== style for u: коллаж выбора (как в макете) ===================== -->
+<section class="landing-section" id="styles">
+    <h2 class="hand sec-hand">style for u</h2>
+    <a href="/catalog/" title="browse the catalog">
+        <img class="styleforu-img" src="{% static 'shop/img/landing/styleforu.jpg' %}" alt="pick your style">
+    </a>
+</section>
+
+<!-- ===================== about as: зеленый блок в цвет шапки, люди вырезаны с черного фона ===================== -->
+<section class="about-as" id="about">
+    <div class="about-inner">
+        <h2 class="hand sec-hand">about as</h2>
+        <div class="about-text hand">
+            <p>We create clothing for those who value freedom of movement, a strong
+               silhouette, and authentic streetwear. No unnecessary details — just
+               precision-cut oversized fits, quality materials, and everyday comfort.</p>
+            <p>Our brand is the foundation of your identity. Your everyday style.
+               Created by you, for yourself.</p>
+        </div>
+        <img class="about-photo" src="{% static 'shop/img/landing/about.png' %}?v=4" alt="myverx team">
+    </div>
+</section>
+
+<!-- ===================== haw we works: инфа о доставке поверх картинки ===================== -->
+<section class="landing-section" id="how-we-works">
+    <h2 class="marker sec-title sec-title-center">haw we works</h2>
+
+    <div class="hww-media">
+        <img src="{% static 'shop/img/box.svg' %}" alt="myverx package">
+        <div class="hww-overlay mono">
+            <p class="hww-lead">how delivery works</p>
+            <p>Your order is packed the same day: a craft box, a postcard with the
+               story of your item and a bit of vintage dust.</p>
+            <p>Delivery takes 2–5 days across the country.</p>
+            <p>Pay with crypto — BTC, ETH, USDT (TRC-20), TON. Wallet address and
+               the exact amount appear right after checkout.</p>
+        </div>
+    </div>
+
+    <div class="hww-steps">
+        <div class="hww-step">
+            <span class="marker step-num">1</span>
+            <b>we hunt stock</b>
+            <p>european warehouses and second-hands, 90s &amp; 2000s only</p>
+        </div>
+        <div class="hww-step">
+            <span class="marker step-num">2</span>
+            <b>we handpick</b>
+            <p>every piece goes through hands: seams, zippers, lining. stains — no</p>
+        </div>
+        <div class="hww-step">
+            <span class="marker step-num">3</span>
+            <b>wash &amp; measure</b>
+            <p>washed, steamed, honest measurements, photos without retouch</p>
+        </div>
+        <div class="hww-step">
+            <span class="marker step-num">4</span>
+            <b>pack &amp; ship</b>
+            <p>craft box, postcard, nationwide delivery in 2–5 days</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

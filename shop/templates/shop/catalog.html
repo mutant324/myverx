@@ -1,0 +1,112 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Products: {{ cat.name|default:'all' }} — myverx{% endblock %}
+
+{% block content %}
+<div class="catalog-layout">
+
+    <!-- левый зеленый сайдбар как в макете -->
+    <aside class="cat-sidebar">
+        <div class="serif sidebar-title">catalogs:</div>
+        <nav class="sidebar-nav">
+            <a href="/catalog/" class="{% if not cat %}active{% endif %}">all stuff</a>
+            {% for c in categories %}
+            <a href="/catalog/{{ c.slug }}/" class="{% if cat and cat.id == c.id %}active{% endif %}">{{ c.name }}</a>
+            {% endfor %}
+        </nav>
+    </aside>
+
+    <div class="cat-main">
+        <h1 class="marker cat-title">Products: <span>{{ cat.name|default:'all stuff' }}</span></h1>
+
+        <!-- кнопка фильтров: панель выезжает по клику (main.js) -->
+        <button type="button" class="filters-btn" id="filtersToggle">
+            filters <span class="arr" id="filtersArr">▼</span>
+            {% if filters_applied %}<span class="filters-dot" title="фильтры применены"></span>{% endif %}
+        </button>
+
+        <form class="filters-panel {% if filters_applied %}open{% endif %}" id="filtersPanel" method="get">
+            <div class="filters-grid">
+                <label>color
+                    <select name="color">
+                        <option value="">any</option>
+                        {% for c in colors %}<option value="{{ c }}" {% if f.color == c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+                    </select>
+                </label>
+                <label>brand
+                    <select name="brand">
+                        <option value="">any</option>
+                        {% for b in brands %}<option value="{{ b }}" {% if f.brand == b %}selected{% endif %}>{{ b }}</option>{% endfor %}
+                    </select>
+                </label>
+                <label>material
+                    <select name="material">
+                        <option value="">any</option>
+                        {% for m in materials %}<option value="{{ m }}" {% if f.material == m %}selected{% endif %}>{{ m }}</option>{% endfor %}
+                    </select>
+                </label>
+                <label>gender
+                    <select name="gender">
+                        <option value="">any</option>
+                        {% for g in genders %}<option value="{{ g }}" {% if f.gender == g %}selected{% endif %}>{{ g }}</option>{% endfor %}
+                    </select>
+                </label>
+                <label>size
+                    <select name="size">
+                        <option value="">any</option>
+                        {% for s in sizes %}<option value="{{ s }}" {% if f.size == s %}selected{% endif %}>{{ s }}</option>{% endfor %}
+                    </select>
+                </label>
+                <label>condition
+                    <select name="condition">
+                        <option value="">any</option>
+                        {% for c in conditions %}<option value="{{ c }}" {% if f.condition == c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+                    </select>
+                </label>
+                <label>season
+                    <select name="season">
+                        <option value="">any</option>
+                        {% for s in seasons %}<option value="{{ s }}" {% if f.season == s %}selected{% endif %}>{{ s }}</option>{% endfor %}
+                    </select>
+                </label>
+                <label>price, $
+                    <span class="price-pair">
+                        <input type="number" name="price_min" placeholder="from" min="0" value="{{ f.price_min|default:'' }}">
+                        <input type="number" name="price_max" placeholder="to" min="0" value="{{ f.price_max|default:'' }}">
+                    </span>
+                </label>
+                <label>sort
+                    <select name="sort">
+                        <option value="">newest first</option>
+                        <option value="price_asc" {% if f.sort == 'price_asc' %}selected{% endif %}>cheapest first</option>
+                        <option value="price_desc" {% if f.sort == 'price_desc' %}selected{% endif %}>priciest first</option>
+                        <option value="name" {% if f.sort == 'name' %}selected{% endif %}>by name</option>
+                    </select>
+                </label>
+                <label class="sale-check">
+                    <input type="checkbox" name="only_sale" {% if f.only_sale %}checked{% endif %}> on sale only
+                </label>
+            </div>
+            <div class="filters-actions">
+                <button type="submit" class="btn-black">confirm</button>
+                <a class="filters-reset" href="/catalog/{{ cat.slug|default:'' }}{% if cat %}/{% endif %}">reset</a>
+            </div>
+        </form>
+
+        {% if products %}
+        <div class="product-grid">
+            {% for p in products %}
+                {% include 'shop/partial_product_card.html' %}
+            {% endfor %}
+        </div>
+        <p class="hand-sub found-line">found: {{ products|length }} items</p>
+        {% else %}
+        <div class="empty-state">
+            <p class="marker">nothing found :(</p>
+            <p>try removing some filters or check <a href="/catalog/">the whole catalog</a></p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

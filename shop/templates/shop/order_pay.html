@@ -1,0 +1,43 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}order #{{ order.id }} — myverx{% endblock %}
+
+{% block content %}
+<div class="landing-section">
+    <h1 class="marker sec-title">order #{{ order.id }}</h1>
+
+    <div class="pay-card">
+        <div class="pay-status-row">
+            <span class="pay-status st-{{ order.status }}">{{ order.status_label }}</span>
+            <span class="hand-sub">created {{ order.created_at|date:"d M, H:i" }}</span>
+        </div>
+
+        <p class="pay-line">to pay: <b class="marker">{{ order.amount_crypto }} {{ order.currency }}</b>
+            <span class="pay-rub">(= {{ order.total }}$ at demo rate)</span></p>
+
+        <p class="hand-sub">send the amount to this address:</p>
+        <div class="pay-addr">
+            <code id="payAddress">{{ order.address }}</code>
+            <button type="button" class="btn-white btn-copy" id="copyAddressBtn">copy</button>
+        </div>
+
+        {% if order.status == 'waiting' %}
+        <ol class="pay-steps">
+            <li>send <b>{{ order.amount_crypto }} {{ order.currency }}</b> to the address above</li>
+            <li>press the button below</li>
+            <li>we check the transfer and ship your item (in demo mode we just trust you)</li>
+        </ol>
+
+        <form method="post" action="/order/{{ order.id }}/paid/">
+            {% csrf_token %}
+            <button type="submit" class="btn-black btn-big">i've sent the transfer ✓</button>
+        </form>
+        {% else %}
+        <p class="pay-ok hand-sub">thanks, your payment is confirmed! track the status in your <a href="/profile/">profile</a></p>
+        {% endif %}
+
+        <p class="co-note">⚠️ demo mode: the addresses are fake, no blockchain check.
+            {% if order.telegram %}telegram for contact: {{ order.telegram }}{% endif %}</p>
+    </div>
+</div>
+{% endblock %}

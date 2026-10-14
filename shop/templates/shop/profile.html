@@ -1,0 +1,71 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}profile — myverx{% endblock %}
+
+{% block content %}
+<div class="landing-section">
+    <h1 class="marker sec-title">profile</h1>
+
+    {% if profile.is_temporary %}
+    <!-- гостевой профиль -->
+    <div class="guest-card">
+        <p class="marker guest-title">you're a guest right now</p>
+        <p>Your profile is temporary: it lives in your browser cookies and disappears
+           only when you clear them. Your cart is safe, but better safe than sorry:</p>
+        <div class="hero-btns">
+            <a class="btn-black" href="/register/">create account</a>
+            <a class="btn-white" href="/login/">log in</a>
+        </div>
+        <p class="hand-sub">your guest id: {{ profile.username }}</p>
+    </div>
+    {% else %}
+    <!-- нормальный профиль -->
+    {% if request.GET.welcome %}
+    <div class="welcome-banner hand-sub">account created — your guest cart (if any) is already here 🎉</div>
+    {% endif %}
+
+    <div class="profile-layout">
+        <div class="profile-card">
+            <div class="profile-avatar marker">{{ profile.username|slice:":1"|upper }}</div>
+            <p class="marker profile-name">{{ profile.full_name }}</p>
+            <table class="pp-table profile-table">
+                <tr><td>username</td><td>{{ profile.username }}</td></tr>
+                <tr><td>email</td><td>{{ profile.email }}</td></tr>
+                <tr><td>birth date</td><td>{{ profile.birth_date|date:"d.m.Y" }}</td></tr>
+                <tr><td>balance</td><td><b>{{ profile.balance }}$</b></td></tr>
+                <tr><td>member since</td><td>{{ profile.created_at|date:"d.m.Y" }}</td></tr>
+            </table>
+            <a class="btn-white" href="/logout/">log out</a>
+        </div>
+
+        <div class="orders-block">
+            <h2 class="marker">my orders</h2>
+            {% if orders %}
+                {% for o in orders %}
+                <div class="order-card">
+                    <div class="order-head">
+                        <b>order #{{ o.id }}</b>
+                        <span class="hand-sub">{{ o.created_at|date:"d.m.Y H:i" }}</span>
+                        <span class="pay-status st-{{ o.status }}">{{ o.status_label }}</span>
+                    </div>
+                    <ul class="order-items">
+                        {% for it in o.items %}
+                        <li>{{ it.name }} × {{ it.quantity }} — {{ it.price }}$</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="order-foot">
+                        <span class="marker">{{ o.total }}$ · {{ o.currency }}</span>
+                        {% if o.status == 'waiting' %}
+                        <a class="btn-black" href="/order/{{ o.id }}/pay/">go to payment</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="hand-sub">no orders yet. easy to fix — <a href="/catalog/">head to the catalog</a></p>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
