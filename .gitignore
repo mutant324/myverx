@@ -5,3 +5,4 @@ db.sqlite3
 .DS_Store
 _qa/
 staticfiles/
+_site/
