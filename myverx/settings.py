@@ -3,15 +3,20 @@
 ВАЖНО: у нас база через sqlalchemy, поэтому джанговский ORM не используется
 и в INSTALLED_APPS нет auth/admin/sessions. свои юзеры в shop/models.py
 """
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-myverx-dev-key-pomenyat-na-prod'
+# на рендере ключ прилетает из переменной окружения, локально — дефолтный
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-myverx-dev-key-pomenyat-na-prod')
 
-DEBUG = True
+# на рендере выключаем, локально работает и так
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+# рендер ходит с домена *.onrender.com
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
@@ -19,6 +24,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # раздает статику в продакшене
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'shop.middleware.TempProfileMiddleware',  # наш мидлварь с гостевым профилем по кукам
@@ -64,3 +70,4 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # сюда collectstatic складывает статику для рендера
